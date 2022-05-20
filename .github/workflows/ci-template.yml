@@ -62,6 +62,12 @@ jobs:
           path: dist/
       - run: pip install tox
       - run: tox -e ${{ matrix.tox-env }}
+      - uses: codecov/codecov-action@v2
+        with:
+          env_vars: PYTHON
+          files: coverage.xml
+          flags: unittests
+          verbose: true
       - uses: actions/upload-artifact@v3
         with:
           name: coverage
